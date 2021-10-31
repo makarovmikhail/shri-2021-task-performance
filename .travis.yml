@@ -1,7 +1,14 @@
+branches:
+  only:
+    - integration
+
+language: node_js
+
 env:
   - DOCKER_COMPOSE_VERSION=1.4.2
 
 before_install:
+  - echo "Starting build docker container..."
   - docker-compose up -d --build
 
 script:
