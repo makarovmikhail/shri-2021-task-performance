@@ -8,5 +8,5 @@ before_install:
   - docker-compose up -d --build
 
 script:
-  - bash bash
+  - bash createticket
   - echo "finish"
