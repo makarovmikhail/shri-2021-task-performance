@@ -1,8 +1,3 @@
-deploy:
-  provider: releases
-  on:
-    tags: true
-
 language: node_js
 
 env:
@@ -13,5 +8,6 @@ before_install:
   - docker-compose up -d --build
 
 script:
-  - bash createticket
+  - if: tag IS present
+    bash createticket
   - echo "finish"
