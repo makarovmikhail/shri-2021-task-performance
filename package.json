@@ -1,0 +1,29 @@
+{
+  "name": "perfomance-app",
+  "version": "1.0.0",
+  "description": "Dummy app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makarovmikhail/shri-2021-task-performance.git"
+  },
+  "author": "Mikhail Makarov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makarovmikhail/shri-2021-task-performance/issues"
+  },
+  "homepage": "https://github.com/makarovmikhail/shri-2021-task-performance#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-server": "^14.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}

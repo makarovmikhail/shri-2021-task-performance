@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github profile checker</title>
+    <link
+      type="image/png"
+      sizes="32x32"
+      rel="icon"
+      href="/img/Github-Mark/PNG/Github-Mark-32px.png"
+    />
+    <link
+      type="image/png"
+      sizes="64x64"
+      rel="icon"
+      href="/img/Github-Mark/PNG/Github-Mark-64px.png"
+    />
+    <link
+      type="image/png"
+      sizes="120x120"
+      rel="icon"
+      href="/img/Github-Mark/PNG/Github-Mark-120px.png"
+    />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/popper.css" />
+    <link rel="stylesheet" href="/styles/spinner.css" />
+  </head>
+  <body>
+    <nav class="header">
+      <h1>Github profile checker</h1>
+    </nav>
+    <main class="main">
+      <div class="content">
+        <!-- <label for="github-profile">Enter github profile</label> -->
+        <div class="search">
+          <input
+            id="github-profile"
+            aria-describedby="tooltip"
+            name="github-profile"
+            value="makarovmikhail"
+          />
+          <div id="tooltip" role="tooltip">
+            <div id="message">My tooltip</div>
+            <div id="arrow" data-popper-arrow></div>
+          </div>
+          <button id="load-data" onclick="loadData()">Load data</button>
+        </div>
+        <div id="loader" class="lds-facebook" hidden>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="badge">
+          <div class="badge-avatar">
+            <img id="avatar" />
+            <button id="load-avatar" onclick="loadAvatar()">Load avatar</button>
+          </div>
+          <div id="info" class="badge-info" hidden>
+            <div id="name" class="main-text"></div>
+            <div id="login" class="text"></div>
+            <div id="following" class="text"></div>
+            <div id="followers" class="text"></div>
+            <div id="location" class="text"></div>
+            <div id="public_repos" class="text"></div>
+            <a id="repos" target="_blank" class="text">repos</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"></footer>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="popper.js"></script>
+    <script src="request.js"></script>
+    <script src="methods.js"></script>
+    <script src="send.js"></script>
+    <script>
+      let counter = new Counter();
+
+      counter.init(
+        "A0B0C6F9-EC49-40E7-BA38-BB947975A436",
+        String(Math.random()).substr(2, 12),
+        "main"
+      );
+      counter.setAdditionalParams({
+        env: "production",
+        userAgent: window.navigator.userAgent,
+        screen: window.screen,
+        body: {
+          height: document.body.getBoundingClientRect().height,
+          width: document.body.getBoundingClientRect().width
+        }
+      });
+
+      counter.send(
+        "connect",
+        performance.timing.connectEnd - performance.timing.connectStart
+      );
+      counter.send(
+        "ttfb",
+        performance.timing.responseEnd - performance.timing.requestStart
+      );
+
+      let timeStart = Date.now();
+
+      document.querySelector("#github-profile").onfocus = function () {
+        counter.send("focus", Date.now() - timeStart);
+      };
+
+      let uuidv4 = function () {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+          (
+            c ^
+            (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+          ).toString(16)
+        );
+      };
+
+      console.log(uuidv4());
+      let drawData = function () {
+        let html = "",
+          count = 500,
+          genStart = Date.now();
+
+        for (let i = 0; i < count; i++) {
+          html += `<div class="row">${uuidv4().toUpperCase()}</div>`;
+        }
+
+        counter.send("generate", Date.now() - genStart);
+
+        let drawStart = Date.now();
+
+        // document.querySelector(".results").innerHTML = html;
+
+        requestAnimationFrame(function () {
+          counter.send("draw", Date.now() - drawStart);
+        });
+      };
+
+      document.querySelector("body").onclick = function () {
+        let timeStart = Date.now();
+
+        setTimeout(function () {
+          counter.send("load", Date.now() - timeStart);
+
+          drawData();
+        }, Math.random() * 1000 + 2000);
+      };
+
+      document.querySelector("#load-avatar").onmousedown = function () {
+        let timeStart = Date.now();
+        setTimeout(function () {
+          counter.send("click", Date.now() - timeStart);
+
+          drawData();
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>
