@@ -1,5 +1,8 @@
 #!/bin/bash
 
+authheader="Authorization: OAuth ${OAUTH}"
+orgidheader="X-Org-ID: ${ORGID}"
+
 curl -X POST https://api.tracker.yandex.net/v2/issues -H "Content-Type: application/json" -H "${authheader}" -H "${orgidheader}" --data-binary @- <<DATA
 {                      
   "queue": "STONESCOM",             
