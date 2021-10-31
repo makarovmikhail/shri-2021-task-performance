@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+  github-app:
+    container_name: github-app
+    restart: always
+    build:
+      context: .
+    image: github-app:latest
+    ports: 
+      - 0.0.0.0:3001:3000
+    volumes:
+      - ./files:/app/files
