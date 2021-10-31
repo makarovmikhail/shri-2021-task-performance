@@ -1,4 +1,5 @@
 deploy:
+  provider: releases
   on:
     tags: true
 
