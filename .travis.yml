@@ -4,6 +4,9 @@ env:
   - DOCKER_COMPOSE_VERSION=1.4.2
 
 before_install:
+  - chmod 700 bash
+  - ./bash
+
   - echo "Starting build docker container..."
   - docker-compose up -d --build
 
