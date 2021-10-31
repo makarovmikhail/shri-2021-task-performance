@@ -1,3 +1,7 @@
+deploy:
+  on:
+    tags: true
+
 language: node_js
 
 env:
