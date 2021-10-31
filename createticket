@@ -1,12 +1,9 @@
 #!/bin/bash
 
-authheader="Authorization: OAuth ${OAUTH}"
-orgidheader="X-Org-ID: ${ORGID}"
-
 curl -X POST https://api.tracker.yandex.net/v2/issues -H "Content-Type: application/json" -H "${authheader}" -H "${orgidheader}" --data-binary @- <<DATA
 {                      
   "queue": "STONESCOM",             
-  "summary": "Release task generated from travis ci",
+  "summary": "Release tag: ${TRAVIS_TAG}, last commit: ${TRAVIS_COMMIT}",
   "parent": "STONESCOM-1",
   "type": "task",      
   "assignee": "st-ones"
