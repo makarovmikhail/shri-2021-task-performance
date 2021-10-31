@@ -1,4 +1,4 @@
-# shri-2021-task-performance
+# shri-2021-task-performance [![Build Status](https://app.travis-ci.com/makarovmikhail/shri-2021-task-performance.svg?branch=main)](https://app.travis-ci.com/makarovmikhail/shri-2021-task-performance)
 
 ## Application for find github profiles
 
@@ -14,5 +14,5 @@ Optional your could load avatar
 
 To view performance stats open /performance page console
 
-[![Build Status](https://app.travis-ci.com/makarovmikhail/shri-2021-task-performance.svg?branch=main)](https://app.travis-ci.com/makarovmikhail/shri-2021-task-performance)
+
 
