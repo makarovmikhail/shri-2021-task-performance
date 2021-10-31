@@ -7,7 +7,8 @@ before_install:
   - echo "Starting build docker container..."
   - docker-compose up -d --build
 
+if: tag IS present
+  script:
+    - bash createticket
 script:
-  - if: tag IS present
-    bash createticket
   - echo "finish"
